@@ -1,0 +1,1 @@
+drop index if exists dish_name_idx;

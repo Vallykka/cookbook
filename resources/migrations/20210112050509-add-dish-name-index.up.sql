@@ -1,0 +1,1 @@
+create index dish_name_idx on dish (lower (name));

@@ -1,0 +1,15 @@
+{
+ :db {:dbname "cookbook"
+      :host "localhost"
+      :user "cookbook"
+      :password "cookbook"
+      }
+ :migratus {:store :database
+            :migration-dir "migrations"
+            ;todo: reuse db config
+            :db "jdbc:postgresql://localhost/cookbook?user=cookbook&password=cookbook"
+            }
+ :server {:port 8080
+          :join? false
+          }
+ }
