@@ -19,7 +19,7 @@
                       (catch SQLException e ::s/invalid)))))
 
 (s/def ::->char-pg-uuid
-  (s/and (every-pred not-empty uuid?)
+  (s/and (every-pred not-empty)
   (s/conformer (fn [id]
                  (try (pg/object "uuid" id)
                       (catch SQLException e ::s/invalid))))))

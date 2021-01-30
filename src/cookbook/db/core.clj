@@ -6,12 +6,11 @@
     [conman.core :as conman]))
 
 (defstate ^{:on-reload :noop} db
-          :start (let [db (-> env :db)]
-                  (pg/spec :dbname (-> db :dbname)
-                           :host (-> db :host)
-                           :user (-> db :user)
-                           :password (-> db :password) ))
+          :start (let [db (env :db)]
+                  (pg/spec :dbname (db :dbname)
+                           :host (db :host)
+                           :user (db :user)
+                           :password (db :password) ))
           :stop (pg/close! db))
-
 
 (conman/bind-connection db "sql/query.sql")
