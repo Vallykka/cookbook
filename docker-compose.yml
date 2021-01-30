@@ -1,0 +1,25 @@
+version: "2.4"
+services:
+  web:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      db-postgres:
+        condition: service_healthy
+    environment:
+      DB-HOST: db-postgres
+
+  db-postgres:
+    image: postgres:12.5-alpine
+    volumes:
+      - ./mounts/db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: cookbook
+      POSTGRES_PASSWORD: cookbook
+      POSTGRES_DB: cookbook
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
